@@ -1,0 +1,17 @@
+diff --git a/core/CMakeLists.txt b/core/CMakeLists.txt
+index 59d38fc..277621c 100644
+--- a/core/CMakeLists.txt
++++ b/core/CMakeLists.txt
+@@ -157,9 +157,9 @@ else()
+         target_link_libraries(sdrpp_core PUBLIC ${CORRECT_LIBRARIES})
+     endif (NOT USE_INTERNAL_LIBCORRECT)
+ 
+-    if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+-        target_link_libraries(sdrpp_core PUBLIC stdc++fs)
+-    endif ()
++    #if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
++    #    target_link_libraries(sdrpp_core PUBLIC stdc++fs)
++    #endif ()
+ 
+ endif ()
+ 

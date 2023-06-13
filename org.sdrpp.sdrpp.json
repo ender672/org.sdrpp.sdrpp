@@ -1,0 +1,226 @@
+{
+  "app-id" : "org.sdrpp.sdrpp",
+  "runtime" : "org.freedesktop.Platform",
+  "runtime-version" : "22.08",
+  "sdk" : "org.freedesktop.Sdk",
+  "command": "sdrpp",
+  "cleanup": [
+    "/include",
+    "/share/doc/libxml2",
+    "/share/gtk-doc",
+    "/bin/airspy*",
+    "/bin/hackrf*",
+    "/bin/rtl_*",
+    "/bin/volk*",
+    "/bin/list_cpu_features",
+    "/share/info/fftw3*",
+    "/bin/xml*",
+    "/share/ECM",
+    "share/sdrpp/icons/sdrpp.macos.png"
+  ],
+  "finish-args" : [
+    "--socket=pulseaudio",
+    "--device=all",
+    "--socket=wayland"
+  ],
+  "modules" : [
+    "shared-modules/glew/glew.json",
+    "shared-modules/linux-audio/fftw3f.json",
+    "shared-modules/libusb/libusb.json",
+    {
+      "name": "libvolk",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DENABLE_TESTING=OFF",
+        "-DENABLE_MODTOOL=OFF"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://www.libvolk.org/releases/volk-3.0.0.tar.gz",
+        "sha256": "797c208bd449f77186684c9fa368cc8577fb98ce3763db5de526e6809de32d28"
+      }]
+    },
+    {
+      "name": "extra-cmake-modules",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DBUILD_TESTING=OFF",
+        "-DBUILD_MAN_DOCS=OFF",
+        "-DBUILD_HTML_DOCS=OFF",
+        "-DBUILD_QTHELP_DOCS=OFF"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://download.kde.org/stable/frameworks/5.107/extra-cmake-modules-5.107.0.tar.xz",
+        "sha256": "3969aad56d1e6a5901e926aaf7a73510d98c4b363564ed3f1222d4135da633ed"
+      }]
+    },
+    {
+      "name": "glfw",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DGLFW_BUILD_EXAMPLES=OFF",
+        "-DGLFW_BUILD_TESTS=OFF",
+        "-DGLFW_BUILD_DOCS=OFF",
+        "-DGLFW_USE_WAYLAND=1"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://github.com/glfw/glfw/releases/download/3.3.8/glfw-3.3.8.zip",
+        "sha256": "4d025083cc4a3dd1f91ab9b9ba4f5807193823e565a5bcf4be202669d9911ea6"
+      }]
+    },
+    {
+      "name": "rtlsdr",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DDETACH_KERNEL_DRIVER=ON"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://github.com/librtlsdr/librtlsdr/archive/refs/tags/v0.8.0.tar.gz",
+        "sha256": "ce18cd70c92d44e81e804b6b4dcd655e0e370d7c8a9c59c6a8fe59e60d3447fc"
+      }]
+    },
+    {
+      "name": "soapy",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DENABLE_DOCS=OFF",
+        "-DENABLE_APPS=OFF",
+        "-DENABLE_TESTS=OFF"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://github.com/pothosware/SoapySDR/archive/refs/tags/soapy-sdr-0.8.1.tar.gz",
+        "sha256": "a508083875ed75d1090c24f88abef9895ad65f0f1b54e96d74094478f0c400e6"
+      }]
+    },
+    {
+      "name": "airspy",
+      "buildsystem": "cmake-ninja",
+      "sources": [{
+        "type": "archive",
+        "url": "https://github.com/airspy/airspyone_host/archive/refs/tags/v1.0.10.tar.gz",
+        "sha256": "fcca23911c9a9da71cebeffeba708c59d1d6401eec6eb2dd73cae35b8ea3c613"
+      }]
+    },
+    {
+      "name": "airspyhf",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DINSTALL_UDEV_RULES=OFF"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://github.com/airspy/airspyhf/archive/refs/tags/1.6.8.tar.gz",
+        "sha256": "cd1e5ae89e09b813b096ae4a328e352c9432a582e03fd7da86760ba60efa77ab"
+      }]
+    },
+    {
+      "name": "libaio",
+      "no-autogen": true,
+      "make-install-args": [
+        "prefix=${FLATPAK_DEST}"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://pagure.io/libaio/archive/libaio-0.3.113/libaio-libaio-0.3.113.tar.gz",
+        "sha256": "716c7059703247344eb066b54ecbc3ca2134f0103307192e6c2b7dab5f9528ab"
+      }]
+    },
+    {
+      "name": "libxml2",
+      "config-opts": [
+        "--with-minimum"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://download.gnome.org/sources/libxml2/2.9/libxml2-2.9.14.tar.xz",
+        "sha256": "60d74a257d1ccec0475e749cba2f21559e48139efba6ff28224357c7c798dfee"
+      }]
+    },
+    {
+      "name": "libiio",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DINSTALL_UDEV_RULE=OFF",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DHAVE_DNS_SD=OFF",
+        "-DWITH_IIOD=OFF",
+        "-DWITH_TESTS=OFF"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://github.com/analogdevicesinc/libiio/archive/refs/tags/v0.24.tar.gz",
+        "sha256": "a2b5d848531ea64fd9f95327dfd5a588bd227d9577281ec375e822702c6a52d5"
+      }]
+    },
+    {
+      "name": "hackrf",
+      "buildsystem": "cmake-ninja",
+      "subdir": "host",
+      "config-opts": [
+        "-DINSTALL_UDEV_RULE=OFF"
+      ],
+      "sources": [{
+        "type": "archive",
+        "url": "https://github.com/greatscottgadgets/hackrf/archive/refs/tags/v2023.01.1.tar.gz",
+        "sha256": "fd10cd3650900aef7546e7a40a2d475db9dd1eab86b5d6f0c1188c91bedadd31"
+      }]
+    },
+    {
+      "name": "rtaudio",
+      "buildsystem": "meson",
+      "config-opts": [
+          "-Djack=disabled",
+          "-Dalsa=disabled"
+      ],
+      "sources": [{
+        "type": "git",
+        "url": "https://github.com/thestk/rtaudio",
+        "commit": "46b01b5b134f33d8ddc3dab76829d4b1350e0522",
+        "tag": "5.2.0"
+      }]
+    },
+    {
+      "name": "libad9361",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DWITH_DOC=OFF"
+      ],
+      "sources": [{
+        "type": "git",
+        "url": "https://github.com/analogdevicesinc/libad9361-iio",
+        "tag": "v0.3"
+      }]
+    },
+    {
+      "name": "sdrpp",
+      "buildsystem": "cmake-ninja",
+      "post-install": [
+        "install -Dm644 root/res/icons/sdrpp.png /app/share/icons/hicolor/512x512/apps/org.sdrpp.sdrpp.png",
+        "install -Dm644 /app/share/applications/sdrpp.desktop /app/share/applications/org.sdrpp.sdrpp.desktop",
+        "desktop-file-edit --set-icon=$FLATPAK_ID /app/share/applications/org.sdrpp.sdrpp.desktop",
+        "install -Dm644 org.sdrpp.sdrpp.metainfo.xml /app/share/metainfo/org.sdrpp.sdrpp.metainfo.xml"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/AlexandreRouma/SDRPlusPlus.git",
+          "commit": "5acdab0d22f612507637e4ba759970ad7dd3c6f2"
+      
+        },
+        {
+          "type": "patch",
+          "path": "sdrpp-fixes.patch"
+        },
+        {
+          "type": "file",
+          "path": "org.sdrpp.sdrpp.metainfo.xml"
+        }
+      ]
+    }
+  ]
+}
