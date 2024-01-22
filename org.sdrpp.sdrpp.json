@@ -1,7 +1,7 @@
 {
   "app-id" : "org.sdrpp.sdrpp",
   "runtime" : "org.freedesktop.Platform",
-  "runtime-version" : "22.08",
+  "runtime-version" : "23.08",
   "sdk" : "org.freedesktop.Sdk",
   "command": "sdrpp",
   "cleanup": [
@@ -36,8 +36,8 @@
       ],
       "sources": [{
         "type": "archive",
-        "url": "https://www.libvolk.org/releases/volk-3.0.0.tar.gz",
-        "sha256": "797c208bd449f77186684c9fa368cc8577fb98ce3763db5de526e6809de32d28"
+        "url": "https://www.libvolk.org/releases/volk-3.1.0.tar.gz",
+        "sha256": "4f5bb84f535ce86cfadc953379587bdd5a1a171d684b0a6f35adcaf2ac46fd01"
       }]
     },
     {
@@ -51,8 +51,8 @@
       ],
       "sources": [{
         "type": "archive",
-        "url": "https://download.kde.org/stable/frameworks/5.107/extra-cmake-modules-5.107.0.tar.xz",
-        "sha256": "3969aad56d1e6a5901e926aaf7a73510d98c4b363564ed3f1222d4135da633ed"
+        "url": "https://download.kde.org/stable/frameworks/5.114/extra-cmake-modules-5.114.0.tar.xz",
+        "sha256": "359ae9ea917fe3ffbb13ff7066dd1dd9750c9a50309737f7d3f43bbd55c6967c"
       }]
     },
     {
@@ -67,8 +67,8 @@
       ],
       "sources": [{
         "type": "archive",
-        "url": "https://github.com/glfw/glfw/releases/download/3.3.8/glfw-3.3.8.zip",
-        "sha256": "4d025083cc4a3dd1f91ab9b9ba4f5807193823e565a5bcf4be202669d9911ea6"
+        "url": "https://github.com/glfw/glfw/releases/download/3.3.9/glfw-3.3.9.zip",
+        "sha256": "55261410f8c3a9cc47ce8303468a90f40a653cd8f25fb968b12440624fb26d08"
       }]
     },
     {
@@ -209,7 +209,7 @@
         {
           "type": "git",
           "url": "https://github.com/AlexandreRouma/SDRPlusPlus.git",
-          "commit": "5acdab0d22f612507637e4ba759970ad7dd3c6f2"
+          "commit": "ead2ac612801c00536ad95945c8a18d38d29ff50"
       
         },
         {
